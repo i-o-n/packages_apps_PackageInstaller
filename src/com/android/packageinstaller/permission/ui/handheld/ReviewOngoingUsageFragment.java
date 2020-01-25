@@ -16,9 +16,17 @@
 
 package com.android.packageinstaller.permission.ui.handheld;
 
+import static android.Manifest.permission_group.ACTIVITY_RECOGNITION;
+import static android.Manifest.permission_group.CALENDAR;
+import static android.Manifest.permission_group.CALL_LOG;
 import static android.Manifest.permission_group.CAMERA;
+import static android.Manifest.permission_group.CONTACTS;
 import static android.Manifest.permission_group.LOCATION;
 import static android.Manifest.permission_group.MICROPHONE;
+import static android.Manifest.permission_group.PHONE;
+import static android.Manifest.permission_group.SENSORS;
+import static android.Manifest.permission_group.SMS;
+import static android.Manifest.permission_group.STORAGE;
 
 import static com.android.packageinstaller.PermissionControllerStatsLog.PRIVACY_INDICATORS_INTERACTED;
 import static com.android.packageinstaller.PermissionControllerStatsLog.PRIVACY_INDICATORS_INTERACTED__TYPE__DIALOG_DISMISS;
@@ -59,7 +67,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A dialog listing the currently uses of camera, microphone, and location.
+ * A dialog listing the currently uses of activity recognition, calendar, call logs, camera,
+ * contacts, location, microphone, phone, sensors, sms and storage.
  */
 public class ReviewOngoingUsageFragment extends PreferenceFragmentCompat {
 
@@ -91,7 +100,10 @@ public class ReviewOngoingUsageFragment extends PreferenceFragmentCompat {
 
         mPermissionUsages = new PermissionUsages(getActivity());
         mStartTime = Math.max(System.currentTimeMillis() - numMillis, Instant.EPOCH.toEpochMilli());
-        mPermissionUsages.load(null, new String[]{CAMERA, LOCATION, MICROPHONE}, mStartTime,
+        mPermissionUsages.load(null,
+                new String[]{ACTIVITY_RECOGNITION, CALENDAR, CALL_LOG,
+                            CAMERA, CONTACTS, LOCATION, MICROPHONE,
+                            PHONE, SENSORS, SMS, STORAGE}, mStartTime,
                 Long.MAX_VALUE, PermissionUsages.USAGE_FLAG_LAST, getActivity().getLoaderManager(),
                 false, false, this::onPermissionUsagesLoaded, false);
     }

@@ -16,9 +16,17 @@
 
 package com.android.packageinstaller.permission.ui.handheld;
 
+import static android.Manifest.permission_group.ACTIVITY_RECOGNITION;
+import static android.Manifest.permission_group.CALENDAR;
+import static android.Manifest.permission_group.CALL_LOG;
 import static android.Manifest.permission_group.CAMERA;
+import static android.Manifest.permission_group.CONTACTS;
 import static android.Manifest.permission_group.LOCATION;
 import static android.Manifest.permission_group.MICROPHONE;
+import static android.Manifest.permission_group.PHONE;
+import static android.Manifest.permission_group.SENSORS;
+import static android.Manifest.permission_group.SMS;
+import static android.Manifest.permission_group.STORAGE;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 import static java.util.concurrent.TimeUnit.DAYS;
@@ -579,7 +587,27 @@ public class PermissionUsageFragment extends SettingsWithLargeHeader implements
             if (usageDiff != 0) {
                 return usageDiff;
             }
-            if (xName.equals(LOCATION)) {
+            if (xName.equals(ACTIVITY_RECOGNITION)) {
+                return -1;
+            } else if (yName.equals(ACTIVITY_RECOGNITION)) {
+                return 1;
+            } else if (xName.equals(CALENDAR)) {
+                return -1;
+            } else if (yName.equals(CALENDAR)) {
+                return 1;
+            } else if (xName.equals(CALL_LOG)) {
+                return -1;
+            } else if (yName.equals(CALL_LOG)) {
+                return 1;
+            } else if (xName.equals(CAMERA)) {
+                return -1;
+            } else if (yName.equals(CAMERA)) {
+                return 1;
+            } else if (xName.equals(CONTACTS)) {
+                return -1;
+            } else if (yName.equals(CONTACTS)) {
+                return 1;
+            } else if (xName.equals(LOCATION)) {
                 return -1;
             } else if (yName.equals(LOCATION)) {
                 return 1;
@@ -587,9 +615,21 @@ public class PermissionUsageFragment extends SettingsWithLargeHeader implements
                 return -1;
             } else if (yName.equals(MICROPHONE)) {
                 return 1;
-            } else if (xName.equals(CAMERA)) {
+            } else if (xName.equals(PHONE)) {
                 return -1;
-            } else if (yName.equals(CAMERA)) {
+            } else if (yName.equals(PHONE)) {
+                return 1;
+            } else if (xName.equals(SENSORS)) {
+                return -1;
+            } else if (yName.equals(SENSORS)) {
+                return 1;
+            } else if (xName.equals(SMS)) {
+                return -1;
+            } else if (yName.equals(SMS)) {
+                return 1;
+            } else if (xName.equals(STORAGE)) {
+                return -1;
+            } else if (yName.equals(STORAGE)) {
                 return 1;
             }
             return x.getName().compareTo(y.getName());
